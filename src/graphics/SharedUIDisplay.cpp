@@ -1,6 +1,8 @@
-#include "graphics/SharedUIDisplay.h"
+#include "configuration.h"
+#if HAS_SCREEN
 #include "RTC.h"
 #include "graphics/ScreenFonts.h"
+#include "graphics/SharedUIDisplay.h"
 #include "graphics/draw/UIRenderer.h"
 #include "main.h"
 #include "meshtastic/config.pb.h"
@@ -129,7 +131,7 @@ void drawCommonHeader(OLEDDisplay *display, int16_t x, int16_t y, const char *ti
 
     int batteryX = 1;
     int batteryY = HEADER_OFFSET_Y + 1;
-
+#if !defined(M5STACK_UNITC6L)
     // === Battery Icons ===
     if (usbPowered && !isCharging) { // This is a basic check to determine USB Powered is flagged but not charging
         batteryX += 1;
@@ -284,7 +286,7 @@ void drawCommonHeader(OLEDDisplay *display, int16_t x, int16_t y, const char *ti
                 int iconX = iconRightEdge - mute_symbol_big_width;
                 int iconY = textY + (FONT_HEIGHT_SMALL - mute_symbol_big_height) / 2;
 
-                if (isInverted) {
+                if (isInverted && !force_no_invert) {
                     display->setColor(WHITE);
                     display->fillRect(iconX - 1, iconY - 1, mute_symbol_big_width + 2, mute_symbol_big_height + 2);
                     display->setColor(BLACK);
@@ -368,7 +370,7 @@ void drawCommonHeader(OLEDDisplay *display, int16_t x, int16_t y, const char *ti
             }
         }
     }
-
+#endif
     display->setColor(WHITE); // Reset for other UI
 }
 
@@ -423,3 +425,4 @@ std::string sanitizeString(const std::string &input)
 }
 
 } // namespace graphics
+#endif
