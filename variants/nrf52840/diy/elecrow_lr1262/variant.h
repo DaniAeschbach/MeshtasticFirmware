@@ -81,31 +81,34 @@ extern "C" {
 // Serial interfaces
 #define SPI_INTERFACES_COUNT 1
 
-#define PIN_SPI_MISO (32 + 15) // P1.15 47
-#define PIN_SPI_MOSI (32 + 14) // P1.14 46
-#define PIN_SPI_SCK (32 + 13)  // P1.13 45
-#define PIN_SPI_NSS (32 + 12)  // P1.12 44
+#define PIN_SPI_MISO (32 + 15) // P1.15
+#define PIN_SPI_MOSI (32 + 14) // P1.14
+#define PIN_SPI_SCK  (32 + 13) // P1.13
+#define PIN_SPI_NSS  (32 + 12) // P1.12
 
-#define LORA_RESET (32 + 10) // P1.10 42 // RST
-#define LORA_DIO1 (32 + 6)   // IRQ
-#define LORA_DIO2 (32 + 11)  // P1.11 43 // BUSY
-#define LORA_SCK PIN_SPI_SCK
-#define LORA_MISO PIN_SPI_MISO
-#define LORA_MOSI PIN_SPI_MOSI
-#define LORA_CS PIN_SPI_NSS
+// SX1262 LoRa
+#define LORA_RESET  (32 + 10) // P1.10 - RESET
+#define LORA_DIO1   (32 + 6)  // P1.06 - IRQ
+#define LORA_BUSY   (32 + 11) // P1.11 - BUSY
+
+#define LORA_SCK    PIN_SPI_SCK
+#define LORA_MISO   PIN_SPI_MISO
+#define LORA_MOSI   PIN_SPI_MOSI
+#define LORA_CS     PIN_SPI_NSS
 
 // LORA MODULES
 #define USE_SX1262
 
-#define SX126X_DIO1 LORA_DIO1
-#define SX126X_RESET LORA_RESET
-#define SX126X_BUSY LORA_DIO2
-#define SX126X_CS LORA_CS
-#define SX126X_SCK LORA_SCK
-#define SX126X_MOSI LORA_MOSI
-#define SX126X_MISO LORA_MISO
-#define SX126X_TXEN RADIOLIB_NC
-#define SX126X_RXEN RADIOLIB_NC
+#define SX126X_DIO1   LORA_DIO1
+#define SX126X_RESET  LORA_RESET
+#define SX126X_BUSY   LORA_BUSY
+#define SX126X_CS     LORA_CS
+#define SX126X_SCK    LORA_SCK
+#define SX126X_MOSI   LORA_MOSI
+#define SX126X_MISO   LORA_MISO
+#define SX126X_TXEN   RADIOLIB_NC
+#define SX126X_RXEN   RADIOLIB_NC
+
 
 #define SX1262_DIO3_TCXO_VOLTAGE 3.3 // Taken from elecrow example
 #define SX1262_DIO2_AS_RF_SWITCH
